@@ -1,5 +1,5 @@
 # Natural selection
-Uma simulação sobre a seleção natural de charles darwin
+A brief simulation about Darwin's Natural Selection
 
 
 The project started with an idea of simulate a biological system where natural selection happens. The main idea was make animals that can reproduce and die, and see what happen when some of them have some genetical factors that give them some advantages.
@@ -12,3 +12,4 @@ In each turn, each individual can die, or survive, it depends on the camouflage 
 
 But, what's the algorithm to define how much of these factors the child will have? Well, it depends on the father of him.
 
+First of all, we have to 
