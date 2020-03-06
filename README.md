@@ -12,4 +12,8 @@ In each turn, each individual can die, or survive, it depends on the camouflage 
 
 But, what's the algorithm to define how much of these factors the child will have? Well, it depends on the father of him.
 
-First of all, we have to 
+First of all, we have to define the factors that the child will have:
+
+★Camouflage
+★Eficience(birth chance)
+
