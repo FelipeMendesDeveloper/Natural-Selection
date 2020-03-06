@@ -12,8 +12,14 @@ In each turn, each individual can die, or survive, it depends on the camouflage 
 
 But, what's the algorithm to define how much of these factors the child will have? Well, it depends on the father of him.
 
-First of all, we have to define the factors that the child will have:
+First of all, we have to define the factors that the child will have, camouflage and eficience(birth chance)
 
-★Camouflage
-★Eficience(birth chance)
+But, these factors can be better, or worse than his father's factors.
 
+So, the first step is make a binary chance of the characteristics increase or decrease
+
+The second step is think, ok it will be better/worse, but how much? so we have to create a percentual chance to define how good or how bad it will be, it's just a question of add or subtract it from the father's factor
+
+Ok, now we have a new individual with his own factors, now we have to make a algorithm to decide wich individuals will die, and wich individuals will live, it's just  question of camouflage
+
+It's simple, just creat a ...
