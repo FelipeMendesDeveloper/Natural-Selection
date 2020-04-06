@@ -1,0 +1,176 @@
+# Código
+Código implementado em Python, para mais velocidade no desenvolvimento, e maior disponibilidade de bibliotecas de gráficos para estatística
+
+from random import randint
+import matplotlib.pyplot as plt
+
+cont = -1
+t = 0
+graf_vivos = []
+graf_eliminados = []
+
+populacao = ['ind1', 'ind2', 'ind3', 'ind4', 'ind5', 'ind6', 'ind7', 'ind8', 'ind9', 'ind10']
+individuos = 10
+
+reproducao = []
+for c in range(0, 10):
+    reproducao.append(randint(1, 90))
+
+camuflagem = []
+for c in range(0, 10):
+    camuflagem.append(randint(1, 100))
+
+for vivo in populacao:
+    cont += 1
+    print(f'{populacao[cont]}, uma chance de {reproducao[cont]}% de se reproduzir, e camuflagem de {camuflagem[cont]}%')
+
+cont = -1
+
+print("""
+
+
+
+""")
+
+for c in range(0, 20):
+    t += 1
+    aprovados = 0
+    desaprovados = 0
+
+    print(f'===TURNO {t}===')
+    for vivo in populacao:
+        cont += 1
+        if vivo != 'eliminado':
+            if camuflagem[cont] >= 50:
+                aprovados += 1
+            else:
+                desaprovados += 1
+    graf_vivos.append(aprovados)
+    graf_eliminados.append(desaprovados)
+
+    cont = -1
+
+    #Child code(C code)
+    len_populacao = len(populacao) - 1
+    for c in range(1, len_populacao + 1):
+        cont += 1
+        if populacao[cont] != 'eliminado':
+            birth = randint(1, 100)
+            if birth < reproducao[cont]:
+                roletaEA = randint(1, 2)
+                roletaPA = randint(1, 100)
+                roletaEC = randint(1, 2)
+                roletaPC = randint(1, 100)
+                if roletaEA == 1:
+                    roletaPA /= 2
+                    x = reproducao[cont] - (reproducao[cont] * roletaPA / 100)
+                    x = round(x, 0)
+                    if x >= 100:
+                        x = 99
+                    if x <= 0:
+                        x = 1
+                else:
+                    roletaPA /= 2
+                    x = reproducao[cont] + (reproducao[cont] * roletaPA / 100)
+                    x = round(x, 0)
+                    if x >= 100:
+                        x = 99
+                    if x <= 0:
+                        x = 1
+
+                if roletaEC == 1:
+                    roletaPC /= 2
+                    y = camuflagem[cont] - (camuflagem[cont] * roletaPC / 100)
+                    y = round(y, 0)
+                    if camuflagem[cont] >= 50:
+                        if y > 100:
+                            y = 100
+                        if y < 50:
+                            y = 50
+                    else:
+                        if y > 100:
+                            y = 100
+                        if y > 50:
+                            y = 49
+                else:
+                    roletaPC /= 2
+                    y = camuflagem[cont] + (camuflagem[cont] * roletaPC / 100)
+                    y = round(y, 0)
+                    if camuflagem[cont] >= 50:
+                        if y > 100:
+                            y = 100
+                        if y < 50:
+                            y = 50
+                    else:
+                        if y > 100:
+                            y = 100
+                        if y > 50:
+                            y = 49
+
+                print(f'{populacao[cont]} teve um filho, com {x}% de chances de se reproduzir e com {y}% de camuflagem, #{t}')
+
+                print(f'O nome dele é ind{individuos + 1}')
+                populacao.append(f'ind{individuos + 1}')
+                reproducao.append(x)
+                camuflagem.append(y)
+                individuos += 1
+
+
+    cont = -1
+
+
+    #deathcode(D code)
+    for vivo in populacao:
+        cont += 1
+        if vivo != 'eliminado':
+            predador = (100 - camuflagem[cont])
+            predador_ale = randint(1 , 100)
+            if predador_ale <= predador:
+                print(f'{populacao[cont]} foi morto pelo predador #{t}')
+                populacao[cont] = 'eliminado'
+                reproducao[cont] = 0
+                camuflagem[cont] = 0
+    predador = 0
+    cont = -1
+
+#Population code(P code)
+print(' ')
+print('===POPULAÇÃO FINAL===')
+print(' ')
+for vivo in populacao:
+    cont += 1
+    if vivo != 'eliminado':
+        print(f'{populacao[cont]}, reprodução = {reproducao[cont]}%, camuflagem = {camuflagem[cont]}%')
+
+print("""
+
+
+""")
+
+#Result code(R code)
+print('===AVALIAÇÃO FINAL===')
+
+aprovadosx = 0
+desaprovadosx = 0
+for camu in camuflagem:
+    if camu > 0:
+        if camu >= 50:
+            aprovadosx += 1
+        else:
+            desaprovadosx += 1
+total = aprovadosx + desaprovadosx
+
+print(f'Tivemos {round(aprovadosx, 0)} aprovados e {round(desaprovadosx, 0)} desaprovados')
+
+turnos = []
+for c in range(0, 20):
+    turnos.append(c)
+
+
+plt.title('Crescimento Populacional')
+plt.xlabel('Turnos')
+plt.ylabel('Indivíduos')
+plt.plot(turnos, graf_vivos, label = 'Aprovados', color='g')
+plt.plot(turnos, graf_eliminados, label='Desaprovados', color='r')
+plt.legend()
+plt.show()
