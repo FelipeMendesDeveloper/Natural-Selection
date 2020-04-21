@@ -41,7 +41,7 @@ Se um desaprovado tivesse um filho, e a penultima parte do algoritmo desse ao fi
 
 Como o algoritmo de morte funciona?
 
-Bom, é dependente da camuflagem, é basicamente, 100 - C, se sua camuflagem é de 90%, você tem 10% de chance de morrer a cada turno, é básico e pode ser observado no código, mas decidi que seria necessário uma cessão sobre para esclarecer as demais dúvidas
+Bom, é dependente da camuflagem, é basicamente, 100 - C, se sua camuflagem é de 90%, você tem 10% de chance de morrer a cada turno, é básico e pode ser observado no código, mas decidi que seria necessário uma seção sobre para esclarecer as demais dúvidas
 
 # Avaliações finais
 
